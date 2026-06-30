@@ -1,0 +1,114 @@
+---
+import ProductCard from './ProductCard.astro';
+import { toyAgeGroups, toyCategoryMeta, type ToyProduct } from '../data/toyProducts';
+
+type Props = {
+  products: ToyProduct[];
+  filterable?: boolean;
+  compact?: boolean;
+};
+
+const { products, filterable = false } = Astro.props;
+---
+
+<section class="product-list" data-product-grid={filterable ? 'filterable' : undefined}>
+  {filterable && (
+    <div class="product-toolbar">
+      <div class="filter-row">
+        <span class="filter-label">Kategorie</span>
+        <button class="filter-button" type="button" data-category-filter="all" aria-pressed="true">Alle</button>
+        {toyCategoryMeta.map((category) => (
+          <button class="filter-button" type="button" data-category-filter={category.name} data-category-slug={category.slug} aria-pressed="false">
+            {category.name}
+          </button>
+        ))}
+      </div>
+      <div class="filter-row">
+        <span class="filter-label">Alter</span>
+        <button class="filter-button" type="button" data-age-filter="all" aria-pressed="true">Alle</button>
+        {toyAgeGroups.map((age) => (
+          <button class="filter-button" type="button" data-age-filter={age} aria-pressed="false">{age}</button>
+        ))}
+      </div>
+      <div class="filter-row">
+        <input class="search-field" type="search" placeholder="Produkt oder Marke suchen" data-product-search aria-label="Produkte suchen" />
+        <span class="product-count" data-product-count>{products.length} Produkte</span>
+      </div>
+    </div>
+  )}
+  <div class="product-grid">
+    {products.map((product) => <ProductCard product={product} />)}
+  </div>
+  {filterable && <p class="empty-state" data-empty-state>Keine passenden Produkte gefunden.</p>}
+</section>
+
+{filterable && (
+  <script>
+    const grids = document.querySelectorAll('[data-product-grid="filterable"]');
+
+    grids.forEach((grid) => {
+      const cards = Array.from(grid.querySelectorAll('[data-product-card]'));
+      const categoryButtons = Array.from(grid.querySelectorAll('[data-category-filter]'));
+      const ageButtons = Array.from(grid.querySelectorAll('[data-age-filter]'));
+      const search = grid.querySelector('[data-product-search]');
+      const count = grid.querySelector('[data-product-count]');
+      const empty = grid.querySelector('[data-empty-state]');
+      const state = { category: 'all', age: 'all', search: '' };
+
+      function setPressed(buttons, activeButton) {
+        buttons.forEach((button) => {
+          button.setAttribute('aria-pressed', button === activeButton ? 'true' : 'false');
+        });
+      }
+
+      function update() {
+        let visible = 0;
+        cards.forEach((card) => {
+          const categoryOk = state.category === 'all' || card.dataset.category === state.category;
+          const ageOk = state.age === 'all' || (card.dataset.ageGroups || '').split('|').includes(state.age);
+          const searchOk = !state.search || (card.dataset.title || '').includes(state.search);
+          const shouldShow = categoryOk && ageOk && searchOk;
+          card.hidden = !shouldShow;
+          if (shouldShow) visible += 1;
+        });
+        if (count) count.textContent = `${visible} Produkte`;
+        if (empty) empty.dataset.visible = visible === 0 ? 'true' : 'false';
+      }
+
+      categoryButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+          state.category = button.dataset.categoryFilter || 'all';
+          setPressed(categoryButtons, button);
+          update();
+        });
+      });
+
+      ageButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+          state.age = button.dataset.ageFilter || 'all';
+          setPressed(ageButtons, button);
+          update();
+        });
+      });
+
+      if (search) {
+        search.addEventListener('input', () => {
+          state.search = search.value.trim().toLowerCase();
+          update();
+        });
+      }
+
+      const params = new URLSearchParams(window.location.search);
+      const categorySlug = params.get('kategorie');
+      if (categorySlug) {
+        const matchingButton = categoryButtons.find((button) => button.dataset.categorySlug === categorySlug);
+        if (matchingButton) {
+          state.category = matchingButton.dataset.categoryFilter || 'all';
+          setPressed(categoryButtons, matchingButton);
+        }
+      }
+
+      update();
+    });
+  </script>
+)}

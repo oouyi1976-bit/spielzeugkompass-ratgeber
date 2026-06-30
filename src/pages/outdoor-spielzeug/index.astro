@@ -1,0 +1,50 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import AffiliateNotice from '../../components/AffiliateNotice.astro';
+import ProductGrid from '../../components/ProductGrid.astro';
+import { getProductsByCategory } from '../../data/toyProducts';
+
+const products = getProductsByCategory('Outdoor-Spielzeug');
+---
+
+<BaseLayout
+  title="Outdoor-Spielzeug für Kinder"
+  description="Outdoor-Spielzeug für Garten, Park und Sommer mit geprüften Amazon.de-Produktlinks und ruhigen Sicherheitshinweisen."
+  canonicalPath="/outdoor-spielzeug/"
+>
+  <section class="section compact">
+    <div class="container section-header">
+      <p class="eyebrow">Draußen spielen</p>
+      <h1>Outdoor-Spielzeug für Garten, Park und Sommer</h1>
+      <p class="lead">Bewegungsspielzeug macht draußen am meisten Sinn, wenn Fläche, Alter, Wetter und Aufsicht zusammenpassen.</p>
+      <AffiliateNotice />
+    </div>
+  </section>
+  <section class="section band">
+    <div class="container split">
+      <div class="prose">
+        <h2>Vor dem Kauf prüfen</h2>
+        <p>Bei Rollern, Schaukeln, Toren oder Bewegungsspielzeug zählen Belastbarkeit, Montagehinweise, Untergrund und Sicherheitsabstände.</p>
+        <p>Für jüngere Kinder sollten Erwachsene die Nutzung begleiten und regelmäßig prüfen, ob Teile beschädigt sind.</p>
+      </div>
+      <div class="prose">
+        <h2>Gute Einsatzorte</h2>
+        <ul class="check-list">
+          <li>Garten und Terrasse mit ausreichend Platz</li>
+          <li>Parkflächen und Spielplätze mit geeigneter Oberfläche</li>
+          <li>Sommer, Ferien und aktive Nachmittage</li>
+          <li>Sand, Wasser und Ballspiele mit klarer Aufsicht</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Auswahl Outdoor-Spielzeug</h2>
+        <p class="lead">Praktische Ideen für Bewegung, Koordination und Spielzeit im Freien.</p>
+      </div>
+      <ProductGrid products={products} />
+    </div>
+  </section>
+</BaseLayout>

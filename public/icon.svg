@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">SpielzeugKompass Icon</title>
+  <desc id="desc">Freundliches Spielzeug-Icon aus Baustein, Stern und Ball.</desc>
+  <rect width="512" height="512" rx="104" fill="#fff8ec"/>
+  <ellipse cx="255" cy="402" rx="164" ry="32" fill="#243042" opacity=".10"/>
+  <rect x="72" y="184" width="220" height="220" rx="48" fill="#f6c85f"/>
+  <rect x="94" y="206" width="176" height="176" rx="36" fill="#fff" opacity=".16"/>
+  <circle cx="150" cy="245" r="27" fill="#fff8ec"/>
+  <circle cx="214" cy="245" r="27" fill="#fff8ec"/>
+  <circle cx="150" cy="316" r="27" fill="#fff8ec"/>
+  <circle cx="214" cy="316" r="27" fill="#fff8ec"/>
+  <circle cx="358" cy="332" r="80" fill="#4f9ec4"/>
+  <path d="M312 293c38 19 78 19 116 0M294 350c48-22 91-22 136 0" fill="none" stroke="#fff8ec" stroke-width="22" stroke-linecap="round" opacity=".8"/>
+  <path d="M346 58l34 68 76 11-55 54 13 76-68-36-68 36 13-76-55-54 76-11z" fill="#ec735f"/>
+</svg>

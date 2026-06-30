@@ -1,0 +1,63 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import AffiliateNotice from '../../components/AffiliateNotice.astro';
+import ProductGrid from '../../components/ProductGrid.astro';
+import { getProductsByCategory, toyProducts } from '../../data/toyProducts';
+
+const giftProducts = [
+  ...getProductsByCategory('Geschenkideen / Trendspielzeug / Audio- und Figurenwelt'),
+  ...toyProducts.filter((product) => product.category !== 'Geschenkideen / Trendspielzeug / Audio- und Figurenwelt').slice(0, 10)
+];
+---
+
+<BaseLayout
+  title="Geschenkideen für Kinder"
+  description="Seriöse Geschenkideen für Kinder nach Alter und Anlass: Audiofiguren, Bausteine, Kreativspielzeug, Brettspiele und Babyspielzeug."
+  canonicalPath="/geschenke/"
+>
+  <section class="section compact">
+    <div class="container section-header">
+      <p class="eyebrow">Geschenke</p>
+      <h1>Geschenkideen ohne Verkaufsdruck</h1>
+      <p class="lead">Praktische Orientierung für Geburtstage, Weihnachten, Besuch, Einschulung oder kleine Überraschungen. Prüfe vor dem Kauf immer Alter, Interessen und Herstellerangaben.</p>
+      <AffiliateNotice />
+    </div>
+  </section>
+  <section class="section band">
+    <div class="container age-grid">
+      <div class="age-card">
+        <h3>Baby</h3>
+        <p>Greifen, fühlen, hören und sichere Materialien. Für Babys sollten verschluckbare Kleinteile vermieden werden.</p>
+      </div>
+      <div class="age-card">
+        <h3>1-3 Jahre</h3>
+        <p>Robuste Spielideen, einfache Ursache-Wirkung-Erlebnisse und erste Rollenspiele passen häufig gut.</p>
+      </div>
+      <div class="age-card">
+        <h3>3-5 Jahre</h3>
+        <p>Bausteine, Rollenspiel, Kreativsets und erste Spiele werden für viele Kinder interessant.</p>
+      </div>
+      <div class="age-card">
+        <h3>6-8 Jahre</h3>
+        <p>Puzzles, Lernwelten, Fahrzeuge und Familienspiele können mehr Regeln und Ausdauer einfordern.</p>
+      </div>
+      <div class="age-card">
+        <h3>9+ Jahre</h3>
+        <p>Knobelspiele, komplexere Bausets, Kreativprojekte und thematische Welten sind oft sinnvoller als reine Kleinkind-Spielzeuge.</p>
+      </div>
+      <div class="age-card">
+        <h3>Anlass</h3>
+        <p>Kleine Mitbringsel dürfen einfacher sein; größere Geschenke sollten Platz, Zubehör und Folgekosten berücksichtigen.</p>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Häufig gekaufte Spielzeugideen</h2>
+        <p class="lead">Eine gemischte Auswahl aus Audio- und Figurenwelten, Lernspielzeug, Bausteinen und kreativen Ideen.</p>
+      </div>
+      <ProductGrid products={giftProducts.slice(0, 20)} />
+    </div>
+  </section>
+</BaseLayout>

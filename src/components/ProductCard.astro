@@ -1,0 +1,54 @@
+---
+import type { ToyProduct } from '../data/toyProducts';
+
+type Props = {
+  product: ToyProduct;
+};
+
+const { product } = Astro.props;
+const isReady = product.affiliateStatus === 'ready';
+const linkProps = {
+  href: product.affiliateUrl,
+  target: '_blank',
+  rel: 'nofollow sponsored noopener noreferrer'
+};
+---
+
+<article
+  class="product-card"
+  data-product-card
+  data-category={product.category}
+  data-age-groups={product.ageGroups.join('|')}
+  data-title={product.title.toLowerCase()}
+>
+  <div class="product-media">
+    {isReady ? (
+      <a {...linkProps} aria-label={`${product.title} bei Amazon ansehen`}>
+        <img src={product.image} alt={product.imageAlt} loading="lazy" width="960" height="720" />
+      </a>
+    ) : (
+      <img src={product.image} alt={product.imageAlt} loading="lazy" width="960" height="720" />
+    )}
+  </div>
+  <div class="product-body">
+    <p class="product-category">{product.category}</p>
+    <h3 class="product-title">
+      {isReady ? <a {...linkProps}>{product.title}</a> : product.title}
+    </h3>
+    <p class="product-description">{product.shortDescription}</p>
+    <div class="product-meta">
+      <p><strong>Ideal für:</strong> {product.idealFor}</p>
+      <p><strong>Alter:</strong> {product.ageHint}</p>
+      <p><strong>Warum interessant:</strong> {product.whyGood}</p>
+    </div>
+    {product.safetyNote && <p class="product-safety">{product.safetyNote}</p>}
+    <div class="product-footer">
+      <span class="asin">ASIN {product.asin}</span>
+      {isReady ? (
+        <a class="button" {...linkProps}>Bei Amazon ansehen</a>
+      ) : (
+        <span class="disabled-button">Amazon-Link folgt</span>
+      )}
+    </div>
+  </div>
+</article>

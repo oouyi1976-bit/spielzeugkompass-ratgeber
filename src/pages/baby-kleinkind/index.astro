@@ -1,0 +1,50 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import AffiliateNotice from '../../components/AffiliateNotice.astro';
+import ProductGrid from '../../components/ProductGrid.astro';
+import { getProductsByCategory } from '../../data/toyProducts';
+
+const products = getProductsByCategory('Baby- und Kleinkindspielzeug');
+---
+
+<BaseLayout
+  title="Baby- und Kleinkindspielzeug"
+  description="Baby- und Kleinkindspielzeug mit Sicherheits-Hinweisen: Greifen, Fühlen, Musik, Sortieren und erste Motorikspielzeuge."
+  canonicalPath="/baby-kleinkind/"
+>
+  <section class="section compact">
+    <div class="container section-header">
+      <p class="eyebrow">Für die Kleinsten</p>
+      <h1>Baby- und Kleinkindspielzeug mit Blick auf Sicherheit</h1>
+      <p class="lead">Bei Babyspielzeug sind klare Altersangaben, robuste Verarbeitung und einfache Reinigung wichtiger als viele Funktionen.</p>
+      <AffiliateNotice />
+    </div>
+  </section>
+  <section class="section band">
+    <div class="container split">
+      <div class="prose">
+        <h2>Sicherheits-Hinweise</h2>
+        <p>Für Kleinkinder sollten verschluckbare Kleinteile vermieden werden. Prüfe Spielzeug regelmäßig auf lose Teile, Risse, Batteriefächer und beschädigte Nähte.</p>
+        <p>Die Produktauswahl ersetzt keine eigene Prüfung der Herstellerangaben.</p>
+      </div>
+      <div class="prose">
+        <h2>Was oft gut passt</h2>
+        <ul class="check-list">
+          <li>Greif- und Beißspielzeug mit klarer Altersangabe</li>
+          <li>Stapel-, Sortier- und Steckspiele</li>
+          <li>Sanfte Musik- und Lichtfunktionen</li>
+          <li>Robuste Bücher, Bälle und erste Motorikideen</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Auswahl Baby- und Kleinkindspielzeug</h2>
+        <p class="lead">Eine ruhige Orientierung für frühe Spiel- und Entdeckungsmomente.</p>
+      </div>
+      <ProductGrid products={products} />
+    </div>
+  </section>
+</BaseLayout>

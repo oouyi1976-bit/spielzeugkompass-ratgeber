@@ -1,0 +1,90 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import AffiliateNotice from '../components/AffiliateNotice.astro';
+import CategoryTiles from '../components/CategoryTiles.astro';
+import ProductGrid from '../components/ProductGrid.astro';
+import { getProductsByCategory, toyProducts } from '../data/toyProducts';
+
+const topProducts = [
+  ...getProductsByCategory('Lernspielzeug'),
+  ...getProductsByCategory('Konstruktionsspielzeug / Bausteine'),
+  ...getProductsByCategory('Baby- und Kleinkindspielzeug'),
+  ...getProductsByCategory('Geschenkideen / Trendspielzeug / Audio- und Figurenwelt')
+].slice(0, 12);
+const heroImages = [toyProducts[10], toyProducts[50], toyProducts[80]];
+---
+
+<BaseLayout
+  title="SpielzeugKompass"
+  description="Moderne deutsche Affiliate-Magazin-Seite für Kinder-Spielzeuge, Lernspielzeug, Kreativspielzeug, Outdoor-Spielzeug und Geschenkideen."
+>
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">Spielzeugideen für Familien</p>
+        <h1>SpielzeugKompass</h1>
+        <p class="lead">
+          Eine ruhige, hilfreiche Orientierung für Eltern, Großeltern und Geschenk-Suchende. Die Auswahl bündelt Lernspielzeug, Bausteine, Kreativsets, Outdoor-Ideen, Babyspielzeug und beliebte Figurenwelten.
+        </p>
+        <div class="hero-actions">
+          <a class="button" href="/spielzeug/">Alle 100 Produkte ansehen</a>
+          <a class="button-secondary" href="/geschenke/">Geschenkideen finden</a>
+        </div>
+      </div>
+      <div class="hero-showcase" aria-hidden="true">
+        <img class="hero-shot one" src={heroImages[0].image} alt="" width="960" height="720" />
+        <img class="hero-shot two" src={heroImages[1].image} alt="" width="960" height="720" />
+        <img class="hero-shot three" src={heroImages[2].image} alt="" width="960" height="720" />
+        <div class="hero-stat">
+          <strong>100</strong>
+          <span>geprüfte Amazon.de-Produktlinks</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section compact">
+    <div class="container">
+      <AffiliateNotice />
+    </div>
+  </section>
+
+  <section class="section band">
+    <div class="container">
+      <div class="section-header">
+        <p class="eyebrow">Kategorien</p>
+        <h2>Schneller zur passenden Spielzeugidee</h2>
+        <p class="lead">Diese Auswahl hilft dir, schneller passende Spielzeugideen zu finden. Achte immer auf die Altersangabe des Herstellers.</p>
+      </div>
+      <CategoryTiles />
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <p class="eyebrow">Top-Auswahl</p>
+        <h2>Beliebte Orientierungspunkte</h2>
+        <p class="lead">Keine Testsieger, keine erfundenen Bewertungen: nur eine kuratierte Auswahl aus gut auffindbaren Spielzeugbereichen.</p>
+      </div>
+      <ProductGrid products={topProducts} />
+    </div>
+  </section>
+
+  <section class="section band">
+    <div class="container guide-grid">
+      <a class="guide-card" href="/ratgeber/">
+        <h3>Spielzeug nach Alter auswählen</h3>
+        <p>Warum Altersangaben, Kleinteile und Entwicklungsstand wichtiger sind als pauschale Empfehlungen.</p>
+      </a>
+      <a class="guide-card" href="/baby-kleinkind/">
+        <h3>Sicherer Einstieg für Kleine</h3>
+        <p>Baby- und Kleinkindspielzeug mit Fokus auf Greifen, Fühlen, Klang und klare Sicherheits-Hinweise.</p>
+      </a>
+      <a class="guide-card" href="/outdoor-spielzeug/">
+        <h3>Ideen für draußen</h3>
+        <p>Bewegung, Garten, Park und Sommer: praktische Anhaltspunkte für aktive Kinder.</p>
+      </a>
+    </div>
+  </section>
+</BaseLayout>

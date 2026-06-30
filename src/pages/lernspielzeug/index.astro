@@ -1,0 +1,51 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import AffiliateNotice from '../../components/AffiliateNotice.astro';
+import ProductGrid from '../../components/ProductGrid.astro';
+import { getProductsByCategory } from '../../data/toyProducts';
+
+const products = getProductsByCategory('Lernspielzeug');
+---
+
+<BaseLayout
+  title="Lernspielzeug für Kinder"
+  description="Lernspielzeug-Ratgeber mit geprüften Amazon.de-Produktlinks für Kinder: Wörter, Zahlen, Musik, Technik und erste Wissenswelten."
+  canonicalPath="/lernspielzeug/"
+>
+  <section class="section compact">
+    <div class="container section-header">
+      <p class="eyebrow">Ratgeber</p>
+      <h1>Lernspielzeug ruhig auswählen</h1>
+      <p class="lead">Gutes Lernspielzeug soll neugierig machen und Spielspaß erhalten. Es muss nicht möglichst viele Funktionen haben, sondern zum Alter und Alltag des Kindes passen.</p>
+      <AffiliateNotice />
+    </div>
+  </section>
+  <section class="section band">
+    <div class="container split">
+      <div class="prose">
+        <h2>Worauf Eltern achten können</h2>
+        <p><strong>Alter:</strong> Die Herstellerangabe ist der wichtigste Startpunkt. Besonders bei Kleinteilen und elektronischen Funktionen sollte sie ernst genommen werden.</p>
+        <p><strong>Alltag:</strong> Ein Lernbuch, Globus, Tablet oder Malroboter funktioniert besser, wenn es zum Kind passt und nicht nur technisch beeindruckt.</p>
+        <p><strong>Begleitung:</strong> Viele Lernspiele profitieren davon, wenn Erwachsene kurz erklären, gemeinsam starten und später freies Spielen zulassen.</p>
+      </div>
+      <div class="prose">
+        <h2>Passende Einsatzbereiche</h2>
+        <ul class="check-list">
+          <li>Wörter, Sprachen und erstes Lesen</li>
+          <li>Zahlen, Formen und Konzentration</li>
+          <li>Musik, Kreativität und Ursache-Wirkung</li>
+          <li>Wissen über Tiere, Welt, Technik oder Natur</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Auswahl Lernspielzeug</h2>
+        <p class="lead">Orientiert an beliebten Amazon-Kategorien und bekannten Markenbereichen.</p>
+      </div>
+      <ProductGrid products={products} />
+    </div>
+  </section>
+</BaseLayout>

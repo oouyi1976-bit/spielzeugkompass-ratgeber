@@ -1,0 +1,26 @@
+---
+import Logo from './Logo.astro';
+
+const currentPath = Astro.url.pathname;
+const navItems = [
+  { href: '/spielzeug/', label: 'Spielzeug' },
+  { href: '/lernspielzeug/', label: 'Lernspielzeug' },
+  { href: '/geschenke/', label: 'Geschenke' },
+  { href: '/outdoor-spielzeug/', label: 'Outdoor' },
+  { href: '/baby-kleinkind/', label: 'Baby & Kleinkind' },
+  { href: '/ratgeber/', label: 'Ratgeber' }
+];
+---
+
+<header class="site-header">
+  <div class="container header-inner">
+    <Logo />
+    <nav class="nav" aria-label="Hauptnavigation">
+      {navItems.map((item) => (
+        <a href={item.href} aria-current={currentPath === item.href ? 'page' : undefined}>
+          {item.label}
+        </a>
+      ))}
+    </nav>
+  </div>
+</header>

@@ -1,0 +1,26 @@
+---
+import { toyCategoryMeta } from '../data/toyProducts';
+
+const categoryLinks: Record<string, string> = {
+  Lernspielzeug: '/lernspielzeug/',
+  'Konstruktionsspielzeug / Bausteine': '/spielzeug/?kategorie=konstruktionsspielzeug-bausteine',
+  'Kreativ- und Bastelspielzeug': '/spielzeug/?kategorie=kreativ-bastelspielzeug',
+  'Brettspiele und Familienspiele': '/spielzeug/?kategorie=brettspiele-familienspiele',
+  'Puzzle und Denkspiele': '/spielzeug/?kategorie=puzzle-denkspiele',
+  'Outdoor-Spielzeug': '/outdoor-spielzeug/',
+  'Fahrzeuge / RC / Spielzeugautos': '/spielzeug/?kategorie=fahrzeuge-rc-spielzeugautos',
+  'Rollenspielzeug / Kinderküche / Kaufladen / Werkzeug': '/spielzeug/?kategorie=rollenspiel-kinderkueche-kaufladen-werkzeug',
+  'Baby- und Kleinkindspielzeug': '/baby-kleinkind/',
+  'Geschenkideen / Trendspielzeug / Audio- und Figurenwelt': '/geschenke/'
+};
+---
+
+<div class="category-grid">
+  {toyCategoryMeta.map((category, index) => (
+    <a class="category-card" href={categoryLinks[category.name] ?? '/spielzeug/'}>
+      <span class="category-mark">{String(index + 1).padStart(2, '0')}</span>
+      <h3>{category.name}</h3>
+      <p>{category.summary}</p>
+    </a>
+  ))}
+</div>

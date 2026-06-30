@@ -1,0 +1,26 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import AffiliateNotice from '../../components/AffiliateNotice.astro';
+import ProductGrid from '../../components/ProductGrid.astro';
+import { toyProducts } from '../../data/toyProducts';
+---
+
+<BaseLayout
+  title="Alle Kinder-Spielzeuge"
+  description="Alle 100 Spielzeugideen von SpielzeugKompass mit Kategorie- und Altersfilter. Ohne Preise, Sternebewertungen oder Fake-Tests."
+  canonicalPath="/spielzeug/"
+>
+  <section class="section compact">
+    <div class="container section-header">
+      <p class="eyebrow">Produktwelt</p>
+      <h1>100 Spielzeugideen im Überblick</h1>
+      <p class="lead">Filtere nach Kategorie oder Alter. Die Produktauswahl ersetzt keine eigene Prüfung der Herstellerangaben.</p>
+      <AffiliateNotice />
+    </div>
+  </section>
+  <section class="section band">
+    <div class="container">
+      <ProductGrid products={toyProducts} filterable />
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,18 @@
+{
+  "name": "spielzeugkompass",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "research:amazon": "node scripts/research-products.mjs",
+    "generate:data": "node scripts/generate-product-data.mjs",
+    "generate:images": "node scripts/generate-product-images.mjs"
+  },
+  "dependencies": {
+    "astro": "^4.16.18"
+  },
+  "devDependencies": {}
+}
