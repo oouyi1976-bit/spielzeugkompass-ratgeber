@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://spielzeugkompass.de/sitemap.xml
+Sitemap: https://spielzeugkompass-ratgeber.pages.dev/sitemap.xml

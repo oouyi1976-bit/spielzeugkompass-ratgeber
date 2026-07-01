@@ -1,5 +1,5 @@
-const site = 'https://spielzeugkompass.de';
-const lastmod = '2026-06-30';
+const site = 'https://spielzeugkompass-ratgeber.pages.dev';
+const lastmod = '2026-07-01';
 const pages = [
   '/',
   '/spielzeug/',

@@ -10,7 +10,7 @@ type Props = {
 };
 
 const { title, description, canonicalPath = Astro.url.pathname } = Astro.props;
-const siteUrl = 'https://spielzeugkompass.de';
+const siteUrl = 'https://spielzeugkompass-ratgeber.pages.dev';
 const canonical = new URL(canonicalPath, siteUrl).toString();
 const pageTitle = title.includes('SpielzeugKompass') ? title : `${title} | SpielzeugKompass`;
 const structuredData = {
@@ -30,6 +30,7 @@ const structuredData = {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
+    <meta name="google-site-verification" content="yPpe7RqFmJlFWGW8pmTMccb6P9_85pKfoSRyazRjG6g" />
     <link rel="canonical" href={canonical} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="alternate icon" href="/icon.svg" type="image/svg+xml" />
